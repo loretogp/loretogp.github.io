@@ -1,0 +1,228 @@
+<html>
+    <header>
+        <title>Creación de passwords</title>
+		<meta charset="UTF-8">
+        <style>
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+body {
+  background-color: #ece6c2;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  min-height: 100vh;
+}
+
+.box1{
+    background-color: #D2A24C;
+    padding-top: 30px;
+    padding: 30px;
+    text-align: center;
+}
+
+.box1 h2{
+margin-bottom: 40px;
+text-align: center;
+font-size: 26px;
+color: #6F5643;
+font-family: sans-serif;
+}
+
+.box1 input {
+  padding: 20px;
+  user-select: none;
+  height: 50px;
+  width: 400px;
+  border-radius: 6px;
+  border: none;
+  border: 2px solid #6F5643;
+  outline: none;
+  font-size: 22px;
+}
+
+input::placeholder{
+font-size: 20px;
+} 
+
+.box1 button {
+  font-family: sans-serif;
+  font-size: 15px;
+
+  margin-top: 40px;
+  border: 2px solid #6F5643;
+  width: 155px;
+  height: 50px;
+  text-align: center;
+  background-color: #73BDA8;
+  display: flex;
+  color: #6F5643;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.box2{
+background-color: #ece6c2;
+padding-top: 30px;
+padding: 30px;
+font-family: sans-serif;
+
+
+}
+.settings-fieldset {
+	color: #6F5643;
+	font-size: 22px;
+	font-weight: 400;
+	line-height: 30px;
+    max-width:800px;
+  margin:0px auto;
+}
+
+.settings-title {
+	display: inline-block !important;
+	width: 275px !important;
+  font-size:16px;
+
+}
+.settings-title.fieldval {width:50px !important;}
+.btn2{
+margin-left: 85px
+}
+</style>
+    </header>
+
+    <body>
+        <div class="box1">
+                <h2>Random Password Generater</h2>
+                <input id="pass_box" type="text" placeholder="Click the button to generate a password"> <br><br>
+                <table border="0" style="display: inline-block;">
+                    <th><button id="generate-button" onclick="genPassword()">Generate Random Password</button></th>
+                    <th><button id="copy-button" onclick="copyPassword()">Copy</button></th>
+                </table>
+        </div>
+        <div class="box2">
+        <div style="font-size: 16px;">
+            <fieldset class="settings-fieldset">
+                <legend>Settings</legend>
+                <div>
+                <div class="settings-title">Password Length</div><div class="settings-title fieldval">
+                <select id="password-length-selection">&nbsp;
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14" selected>14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    </select>
+                </div>
+                </div>
+            <div class="settings-title">Allow Symbols (!@#$%^&amp;*()+)</div>
+            <div class="settings-title  fieldval">
+                <input id="include-symbol-checkbox" type="checkbox">
+            </div>
+            <div style="clear: both; height: 0px;">&nbsp;</div>
+            <div class="settings-title">Allow Numbers (0-9)</div>
+            <div class="settings-title fieldval">
+                <input id="include-numbers-checkbox" type="checkbox" checked="checked">
+            </div>
+            <div class="settings-title">Allow Lowercase (abc)</div>
+            <div class="settings-title fieldval">
+                <input id="include-lowercase-checkbox" type="checkbox" checked="checked">
+            </div>
+            <div style="clear: both; height: 0px;">&nbsp;</div>
+            <div class="settings-title">Allow Uppercase (ABC)</div>
+            <div class="settings-title fieldval">
+                <input id="include-uppercase-checkbox" type="checkbox" checked="checked">
+            </div>
+            <div class="settings-title">Exclude Duplicate Characters</div>
+            <div class="settings-title fieldval">
+                <input disabled id="exclude-duplicates-checkbox" type="checkbox">
+            </div>
+            <div style="clear: both; height: 0px;">&nbsp;</div>
+            <div class="settings-title">Exclude Similar (iI1loO0)</div>
+            <div class="settings-title fieldval">
+                <input id="exclude-similar-checkbox" type="checkbox" checked="checked">
+            </div>
+            </fieldset></div>
+        </div>
+<script>
+var password=document.getElementById("pass_box");
+
+function genPassword() {
+    var passwordLengthSelection = document.getElementById("password-length-selection");
+    //var text = passwordLengthSelection.options[passwordLengthSelection.selectedIndex].text;
+    var passwordIncludeSymbol = document.getElementById("include-symbol-checkbox");
+    var passwordIncludeNumbers = document.getElementById("include-numbers-checkbox");
+    var passwordIncludeLowercase = document.getElementById("include-lowercase-checkbox");
+    var passwordIncludeUppercase = document.getElementById("include-uppercase-checkbox");
+    var passwordExcludeDuplicates = document.getElementById("exclude-duplicates-checkbox");
+    var passwordExcludeSimilar = document.getElementById("exclude-similar-checkbox");
+    var passwordIncludeSpecific = document.getElementById("include-specific-textbox");
+
+
+    var lowercase = "abcdefghijklmnopqrstuvwxyz";
+    var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var numbers = "1234567890";
+    var symbols = "!@#$%^&*()+";
+    var similar = "oO0il1";
+    
+    var contender = "";
+    if (passwordIncludeNumbers.checked)contender += numbers;
+    if (passwordIncludeLowercase.checked)contender += lowercase;
+    if (passwordIncludeSymbol.checked)contender += symbols;
+    if (passwordIncludeUppercase.checked)contender += uppercase;
+    //document.getElementById("salida_box").value=contender;
+
+    var chars = contender;//"0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var passwordLength = passwordLengthSelection.options[passwordLengthSelection.selectedIndex].text;
+    //var passwordLength = 12;
+    var password = "";
+    for (var i = 0; i < passwordLength; i++) {
+        var randomNumber = Math.floor(Math.random() * chars.length);
+        password += chars.substring(randomNumber, randomNumber +1);
+    }
+    document.getElementById("pass_box").value = password;
+}
+
+function copyPassword() {
+ var copyText = document.getElementById("pass_box");
+ copyText.select();
+ document.execCommand("copy");  
+}
+</script>    
+    </body>
+</html>
