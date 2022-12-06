@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'twitter';
-  src: url('../font/twitter.eot?27718376');
-  src: url('../font/twitter.eot?27718376#iefix') format('embedded-opentype'),
-       url('../font/twitter.woff2?27718376') format('woff2'),
-       url('../font/twitter.woff?27718376') format('woff'),
-       url('../font/twitter.ttf?27718376') format('truetype'),
-       url('../font/twitter.svg?27718376#twitter') format('svg');
+  font-family: 'myfont';
+  src: url('../font/myfont.eot?65695788');
+  src: url('../font/myfont.eot?65695788#iefix') format('embedded-opentype'),
+       url('../font/myfont.woff2?65695788') format('woff2'),
+       url('../font/myfont.woff?65695788') format('woff'),
+       url('../font/myfont.ttf?65695788') format('truetype'),
+       url('../font/myfont.svg?65695788#myfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,13 +14,13 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'twitter';
-    src: url('../font/twitter.svg?27718376#twitter') format('svg');
+    font-family: 'myfont';
+    src: url('../font/myfont.svg?65695788#myfont') format('svg');
   }
 }
 */
 [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "twitter";
+  font-family: "myfont";
   font-style: normal;
   font-weight: normal;
   speak: never;
@@ -54,4 +54,6 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
+.icon-twitter-1:before { content: '\e800'; } /* '' */
 .icon-twitter:before { content: '\f099'; } /* '' */
+.icon-youtube:before { content: '\f167'; } /* '' */
