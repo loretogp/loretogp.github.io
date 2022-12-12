@@ -3,8 +3,7 @@
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1229284733731710"
         crossorigin="anonymous"></script>
         <title>loretogp.github.io</title>
-		<meta charset="UTF-8">
-        <link rel="stylesheet" href="css/menu.css">
+		    <meta charset="UTF-8">
         <style>
 * {
   margin: 0;
@@ -20,20 +19,43 @@ body {
   min-height: 100vh;
 }
 
+.box0{
+    background-color: #D2A24C;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #6F5643;
+}
+
+.box0 button {
+  font-family: sans-serif;
+  font-size: 15px;
+  border: 2px solid #6F5643;
+  width: 155px;
+  height: 30px;
+  text-align: center;
+  background-color: #73BDA8;
+  color: #6F5643;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
 .box1{
     background-color: #D2A24C;
     padding-top: 30px;
     padding: 30px;
     text-align: center;
-    border-radius: 7px;
+    border-radius: 15px;
+    border: 2px solid #6F5643;
 }
 
 .box1 h2{
-margin-bottom: 40px;
-text-align: center;
-font-size: 26px;
-color: #6F5643;
-font-family: sans-serif;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 26px;
+  color: #6F5643;
+  font-family: sans-serif;
 }
 
 .box1 input {
@@ -49,7 +71,7 @@ font-family: sans-serif;
 }
 
 input::placeholder{
-font-size: 20px;
+  font-size: 20px;
 } 
 
 .box1 button {
@@ -71,21 +93,27 @@ font-size: 20px;
 }
 
 .box2{
-background-color: #ece6c2;
-padding-top: 30px;
-padding: 30px;
-font-family: sans-serif;
-
-
+  background-color: #D2A24C;
+  padding-top: 30px;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid #6F5643;
 }
 .settings-fieldset {
 	color: #6F5643;
 	font-size: 22px;
 	font-weight: 400;
 	line-height: 30px;
-    max-width:800px;
+  max-width:800px;
   margin:0px auto;
+  border-style: none;
 }
+.settings-fieldset legend {
+    font-size:  24px;
+    font-weight:  bold;
+    position:  relative;  
+}
+
 
 .settings-title {
 	display: inline-block !important;
@@ -145,25 +173,12 @@ margin-left: 85px
     </header>
 
     <body>
-        <input type="checkbox" id="ham-menu">
-        <label for="ham-menu">
-          <div class="hide-des">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-          </div>
-        
-        </label>
-        <div class="full-page-green"></div>
-        <div class="ham-menu">
-          <ul class="centre-text bold-text">
-            <li><a href="https://loretogp.github.io/">Home</a></li>
-            <li><i class="demo-icon icon-twitter">&#xf099;</i><a href="https://twitter.com/LoretoGP" target="_blank">Twitter</a></li>
-            <li><i class="demo-icon icon-youtube">&#xf167;</i><a href="loretogp.html">Dev Sounds</a></li>
-          </ul>
+        <div class="box0">
+          <table border="0" style="display: inline-block;">
+              <th><a href="https://loretogp.github.io/"><button id="home-button">Home</button></a></th>
+              <th><a href="https://twitter.com/LoretoGP" target="_blank"><button id="twitter-button"><i class="demo-icon icon-twitter">&#xf099;</i>Twitter</button></a></th>
+              <th><a href="loretogp.html"><button id="sounds-button"><i class="demo-icon icon-youtube">&#xf167;</i>Dev Sounds</button></a></th>
+          </table>
         </div>
 
         <div class="box1">
@@ -177,7 +192,7 @@ margin-left: 85px
         <div class="box2">
         <div style="font-size: 16px;">
             <fieldset class="settings-fieldset">
-                <legend>Settings</legend>
+                <legend >&nbsp;Settings</legend>
                 <div>
                 <div class="settings-title">Password Length</div><div class="settings-title fieldval">
                 <select id="password-length-selection">&nbsp;
