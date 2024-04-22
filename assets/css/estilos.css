@@ -1,5 +1,36 @@
 body {
     font-family: "Raleway", sans-serif;
-    background-color: #ece6c2;
+    background-color: whitesmoke;
     color: #6f5643;
   }
+
+  #Hero-Section {
+    background-image: url("../img/nube.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    border-radius: 15px;
+  }
+
+  #Mis-trabajos{
+    border-radius: 25px;
+  }
+
+  #Mis-trabajos .image-top {
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #Mis-Entregas{
+    border-radius: 25px;
+  } 
+
+  #Mis-Entregas .image-top {
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
