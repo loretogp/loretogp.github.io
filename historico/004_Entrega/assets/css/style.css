@@ -1,0 +1,48 @@
+body{
+    font-family: Roboto, sans-serif;
+}
+
+.img-logo{
+    width: 86px;
+    height: 25px;
+}
+
+.card{
+    width: 278px;
+}
+
+.card-img-top{
+    width: 278px;
+    height: 180px;
+}
+
+.card-text{
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-weight: 300; /* Peso de la fuente light */
+    
+}
+
+.card-footer{
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-weight: 300; /* Peso de la fuente light */
+}
+
+.precio-oferta{
+    color: #28A745;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+h2{
+    font-size: 21px;
+}
+
+.img-logo-footer{
+    width: 82px;
+    height: 24px;
+    margin-top: 82px;
+}
+
+footer{
+    text-align: center;
+}
