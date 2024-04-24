@@ -2,6 +2,12 @@
 
 Proyecto para Modulo 1 HTML Desafio Latam G71
 
+Deploy 
+https://loretogp.github.io/
+
+Repositorio
+https://github.com/loretogp/loretogp.github.io
+
 # Fork
 Descripción : Proyectos a los que hice Fork
 
