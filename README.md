@@ -3,8 +3,10 @@
 
 Link publicado
 
-https://loretogp.github.io/Home-LoretoGP/
+https://loretogp.github.io/
 
 
 Links para desarrollo
 https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+
