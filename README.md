@@ -1,20 +1,10 @@
-# loretogp.github.io
-https://loretogp.github.io/
+# Home-LoretoGP
+ Desarrollo del nuevo Home LoretoGP
 
-Proyecto para Modulo 1 HTML Desafio Latam G71
+Link publicado
 
-Deploy 
-https://loretogp.github.io/
-
-Repositorio
-https://github.com/loretogp/loretogp.github.io
-
-# Fork
-Descripción : Proyectos a los que hice Fork
-
-### 1. https://github.com/loretogp/luissubiabre.github.io
-
-### 2. https://github.com/loretogp/cvegasan.github.io
+https://loretogp.github.io/Home-LoretoGP/
 
 
-En ambos se agrega texto para invitar a mi pagina
+Links para desarrollo
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
