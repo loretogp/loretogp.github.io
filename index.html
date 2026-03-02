@@ -1,57 +1,582 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Shortcuts</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LORETO GP — Y2K Tech Landing</title>
+
+  <!-- Tipografías (opcional). Si quieres 0 externos, borra este bloque y quedará con system fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#010021;
+      --violet:#8843F2;
+      --cyan:#00FFEA;
+      --text:#ffffff;
+
+      --radius:18px;
+      --pad:18px;
+      --line:1px;
+
+      /* Glow suave (no exagerado) */
+      --glowV: 0 0 12px rgba(136,67,242,.35);
+      --glowC: 0 0 12px rgba(0,255,234,.28);
+      --glowMix: 0 0 18px rgba(136,67,242,.20), 0 0 16px rgba(0,255,234,.14);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.3;
+      overflow-x:hidden;
+    }
+
+    /* Fondo “digital” con líneas y puntos (solo usando la paleta) */
+    .bg-grid{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.70;
+      background:
+        radial-gradient(900px 500px at 10% 5%, rgba(0,255,234,.12), transparent 60%),
+        radial-gradient(800px 450px at 90% 10%, rgba(136,67,242,.14), transparent 55%),
+        linear-gradient(to right, rgba(0,255,234,.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(136,67,242,.08) 1px, transparent 1px);
+      background-size:
+        auto,
+        auto,
+        56px 56px,
+        56px 56px;
+      filter: drop-shadow(var(--glowMix));
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px 28px;
+      position:relative;
+      z-index:1;
+    }
+
+    /* Panel base */
+    .panel{
+      border-radius: var(--radius);
+      padding: var(--pad);
+      border: var(--line) solid rgba(0,255,234,.30);
+      box-shadow: var(--glowC);
+      background: rgba(1,0,33,.55);
+      backdrop-filter: blur(6px);
+    }
+    .panel.violet{
+      border-color: rgba(136,67,242,.40);
+      box-shadow: var(--glowV);
+    }
+    .panel.mix{
+      border-color: rgba(255,255,255,.10);
+      box-shadow: var(--glowMix);
+    }
+
+    /* Header simétrico */
+    header{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .logo{
+      width:44px;height:44px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,255,234,.45);
+      box-shadow: var(--glowC);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(0,255,234,.22), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(136,67,242,.18), transparent 55%);
+      position:relative;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 0 10px rgba(0,255,234,.10);
+    }
+
+    .brand h1{
+      font-size:18px;
+      margin:0;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand small{
+      display:block;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      opacity:.78;
+      letter-spacing:.08em;
+      margin-top:3px;
+      font-size:12px;
+    }
+
+    /* Centro: “pill” */
+    .status-pill{
+      text-align:center;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--glowMix);
+      background: rgba(1,0,33,.65);
+      min-width: 260px;
+    }
+    .status-pill .kicker{
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:12px;
+      letter-spacing:.14em;
+      opacity:.85;
+      text-transform:uppercase;
+    }
+    .status-pill .line{
+      margin-top:6px;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(0,255,234,.45), rgba(136,67,242,.45), transparent);
+      opacity:.9;
+    }
+
+    /* Derecha: menú alineado a la derecha */
+    nav{
+      justify-self:end;
+    }
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:14px;
+      margin:0;
+      padding:0;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      text-decoration:none;
+      color: var(--text);
+      opacity:.86;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      transition: transform .15s ease, opacity .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    nav a:hover{
+      opacity:1;
+      transform: translateY(-1px);
+      border-color: rgba(0,255,234,.35);
+      box-shadow: var(--glowC);
+    }
+
+    /* Hero */
+    .hero{
+      margin-bottom:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .hero h2{
+      margin:0 0 10px 0;
+      font-size:40px;
+      letter-spacing:.02em;
+      line-height:1.05;
+    }
+    .hero p{
+      margin:0;
+      opacity:.86;
+      max-width: 60ch;
+    }
+
+    .meta{
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+    .chip{
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(136,67,242,.35);
+      box-shadow: var(--glowV);
+      background: rgba(1,0,33,.60);
+      opacity:.92;
+    }
+    .chip.cyan{
+      border-color: rgba(0,255,234,.35);
+      box-shadow: var(--glowC);
+    }
+
+    .cta{
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      color: var(--text);
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(0,255,234,.38);
+      box-shadow: var(--glowC);
+      background: rgba(1,0,33,.62);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:12px;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    .button:hover{
+      transform: translateY(-1px);
+      border-color: rgba(136,67,242,.42);
+      box-shadow: var(--glowMix);
+    }
+    .button.secondary{
+      border-color: rgba(255,255,255,.12);
+      box-shadow:none;
+      opacity:.9;
+    }
+
+    .divider{
+      height:1px;
+      margin:16px 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+      opacity:.95;
+    }
+
+    /* Grid 2x2 súper simétrica */
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .card{
+      position:relative;
+      min-height: 200px;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      gap:10px;
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--glowMix);
+      background: rgba(1,0,33,.58);
+      overflow:hidden;
+    }
+
+    /* Borde “neón” sutil (sin meter un 4to color) */
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius: calc(var(--radius) + 1px);
+      border:1px solid rgba(0,255,234,.25);
+      box-shadow: 0 0 18px rgba(0,255,234,.10), 0 0 18px rgba(136,67,242,.10);
+      pointer-events:none;
+    }
+
+    .card .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .tag{
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,255,234,.30);
+      box-shadow: 0 0 12px rgba(0,255,234,.18);
+      opacity:.92;
+      white-space:nowrap;
+    }
+    .tag.violet{
+      border-color: rgba(136,67,242,.34);
+      box-shadow: 0 0 12px rgba(136,67,242,.18);
+    }
+
+    .card h3{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.02em;
+    }
+
+    .card p{
+      margin:0;
+      opacity:.86;
+      max-width: 60ch;
+    }
+
+    .card .bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:6px;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    .hint{
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:11px;
+      letter-spacing:.10em;
+      opacity:.75;
+      text-transform:uppercase;
+    }
+
+    .link{
+      color: var(--text);
+      text-decoration:none;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .link:hover{
+      transform: translateY(-1px);
+      border-color: rgba(0,255,234,.35);
+      box-shadow: var(--glowC);
+    }
+
+    /* Footer minimal */
+    footer{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap:12px;
+      align-items:center;
+      padding:16px 14px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(1,0,33,.55);
+      box-shadow: var(--glowMix);
+    }
+    footer .left, footer .right{
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      opacity:.75;
+    }
+    footer .right{ justify-self:end; text-align:right; }
+    footer .center{
+      justify-self:center;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size:11px;
+      letter-spacing:.12em;
+      opacity:.85;
+    }
+
+    /* Responsive: mantener simetría y aire */
+    @media (max-width: 920px){
+      header{
+        grid-template-columns: 1fr;
+        justify-items:stretch;
+      }
+      nav{ justify-self:start; }
+      nav ul{ justify-content:flex-start; }
+
+      .status-pill{ min-width: unset; }
+      .hero{ grid-template-columns: 1fr; }
+      footer{ grid-template-columns: 1fr; }
+      footer .right{ justify-self:start; text-align:left; }
+      footer .center{ justify-self:start; }
+    }
+
+    @media (max-width: 640px){
+      .wrap{ padding:22px 14px 22px; }
+      .hero h2{ font-size:32px; }
+      .projects{ grid-template-columns: 1fr; }
+      nav a{ padding:9px 10px; }
+      .card{ min-height: 0; }
+    }
+
+    /* Accesibilidad: reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      nav a, .button, .link{ transition:none; }
+    }
+  </style>
 </head>
+
 <body>
-    <nav class="navbar" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-          <span class="navbar-text">
-            Links Importantes
-          </span>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>LORETO GP</h1>
+          <small>Y2K TECH / GRID SYSTEM</small>
         </div>
-    </nav>
-    <div class="grid-container">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Repositorios Github</h5>
-            <p class="card-text">GitHub LoretoGP</p>
-            <a href="https://github.com/loretogp" target="_blank" class="btn btn-outline-success">GitHub LoretoGP</a>
+      </div>
+
+      <div class="status-pill" role="status" aria-label="Estado del sitio">
+        <div class="kicker">BUILDING IN PUBLIC</div>
+        <div class="line"></div>
+      </div>
+
+      <nav aria-label="Menú principal">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="panel mix" id="about">
+        <h2>Futurismo 90s.<br/>Precisión de grilla.</h2>
+        <p>
+          Una landing minimalista con estética Y2K Tech: paneles con contorno neón,
+          separadores finos y mucho aire. Diseño simétrico, rápido de escanear y
+          listo para convertirlo en tu sitio real.
+        </p>
+
+        <div class="chips" aria-label="Etiquetas">
+          <span class="chip cyan">Cloud / GCP</span>
+          <span class="chip">Data + Ops</span>
+          <span class="chip cyan">Creator Mode</span>
+          <span class="chip">Notes / Systems</span>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="cta">
+          <a class="button" href="#projects">Ver proyectos ▸</a>
+          <a class="button secondary" href="#contact">Contactar</a>
+        </div>
+      </div>
+
+      <aside class="meta">
+        <div class="panel violet" id="blog">
+          <div style="display:grid; gap:10px;">
+            <div class="tag violet">LATEST</div>
+            <div>
+              <h3 style="margin:0; font-size:18px;">Blog / Updates</h3>
+              <p style="margin:8px 0 0; opacity:.86;">
+                Publicaciones cortas, prácticas y tech. Sin ruido, con estructura.
+              </p>
             </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Jira Software Personal</h5>
-            <p class="card-text">Jira Software LoretoGP</p>
-            <a href="https://loretogp4.atlassian.net/jira/your-work" target="_blank" class="btn btn-outline-success">Jira Software LoretoGP</a>
+            <div class="divider" aria-hidden="true"></div>
+            <div style="display:flex; justify-content:space-between; gap:12px; align-items:center;">
+              <span class="hint">MONO / NOTES</span>
+              <a class="link" href="#blog">Leer ▸</a>
             </div>
+          </div>
         </div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Plataforma Desafio Latam</h5>
-            <p class="card-text">PLATAFORMA_EMPIEZA</p>
-            <a href="https://empieza.desafiolatam.com/" target="_blank" class="btn btn-outline-success">Plataforma Empieza</a>
+
+        <div class="panel" id="contact">
+          <div style="display:grid; gap:10px;">
+            <div class="tag">CONTACT</div>
+            <div>
+              <h3 style="margin:0; font-size:18px;">Trabajo & colaboraciones</h3>
+              <p style="margin:8px 0 0; opacity:.86;">
+                Si quieres armar algo con estética Y2K Tech o un sistema de contenido,
+                conversemos.
+              </p>
             </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">Plataforma Google Cloud Skill Boost</h5>
-            <p class="card-text">Google Cloud Skill Boost</p>
-            <a href="https://www.cloudskillsboost.google/" target="_blank" class="btn btn-outline-success">Google Cloud Skill Boost</a>
+            <div class="divider" aria-hidden="true"></div>
+            <div style="display:flex; justify-content:space-between; gap:12px; align-items:center;">
+              <span class="hint">RESPUESTA RÁPIDA</span>
+              <a class="link" href="#contact">Ping ▸</a>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- BOOTSTRAP JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
+      </aside>
+    </section>
+
+    <section id="projects" class="projects" aria-label="Proyectos destacados">
+      <article class="card">
+        <div class="top">
+          <h3>Cloud Leadership Toolkit</h3>
+          <span class="tag">SYSTEM</span>
+        </div>
+        <p>
+          Plantillas, checklists y rituales de operación: decisiones más claras,
+          menos fricción, más impacto.
+        </p>
+        <div class="bottom">
+          <span class="hint">GRID / PROCESS</span>
+          <a class="link" href="#">Abrir ▸</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="top">
+          <h3>Side Projects Lab</h3>
+          <span class="tag violet">MVP</span>
+        </div>
+        <p>
+          Experimentos pequeños con intención: apps simples, landing monetizable,
+          iteración rápida.
+        </p>
+        <div class="bottom">
+          <span class="hint">SHIP / LEARN</span>
+          <a class="link" href="#">Abrir ▸</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <div class="left">© <span id="year"></span> LORETO GP</div>
+      <div class="center">#010021 · #8843F2 · #00FFEA</div>
+      <div class="right">Y2K TECH · STRICT GRID</div>
+    </footer>
+  </div>
+
+  <script>
+    // Solo para el año en el footer (opcional)
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
